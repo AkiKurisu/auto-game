@@ -12,7 +12,13 @@
 
 Auto Game 提供了一键式 CLI，方便 coding agent 自动化操作游戏。
 
-> 目前仅支持 Unity Mono 后端的游戏，IL2CPP 和其他游戏引擎暂不支持。
+## Roadmap
+
+- [x] Unity Mono
+- [ ] Unity IL2CPP
+- [ ] Unity CoreCLR
+- [ ] Godot
+- [ ] Unreal Engine
 
 ## 安装
 

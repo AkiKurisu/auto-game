@@ -4,13 +4,21 @@
 
 [中文](./README_ZH.md) · [Architecture](./docs/architecture.md) · [License](./LICENSE)
 
+Let your coding agent play games for you!
+
 </div>
 
 ## What it does
 
-Auto Game is a one-command CLI that lets your coding agent automate a running game. 
+Auto Game is a one-command CLI that lets your coding agent automate a running game.
 
-> Only Unity games on the Mono backend are supported today. IL2CPP and other game engines are not supported yet.
+## Roadmap
+
+- [x] Unity Mono
+- [ ] Unity IL2CPP
+- [ ] Unity CoreCLR
+- [ ] Godot
+- [ ] Unreal Engine
 
 ## Install
 
