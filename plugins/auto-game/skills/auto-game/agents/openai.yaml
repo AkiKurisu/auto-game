@@ -1,0 +1,9 @@
+interface:
+  display_name: "Auto Game"
+  short_description: "Inspect and automate running games"
+  brand_color: "#7557FF"
+  icon_small: "../../assets/auto-game.svg"
+  icon_large: "../../assets/auto-game.svg"
+  default_prompt: "Use $auto-game to inspect the selected game process."
+policy:
+  allow_implicit_invocation: true

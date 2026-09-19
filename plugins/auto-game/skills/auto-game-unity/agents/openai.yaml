@@ -1,0 +1,8 @@
+interface:
+  display_name: "Auto Game for Unity"
+  short_description: "Automate a Unity Mono Player"
+  brand_color: "#7557FF"
+  icon_small: "../../assets/auto-game.svg"
+  icon_large: "../../assets/auto-game.svg"
+policy:
+  allow_implicit_invocation: false

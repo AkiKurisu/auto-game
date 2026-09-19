@@ -1,0 +1,67 @@
+name: Build and publish Auto Game
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ['v*.*.*']
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+      - name: Build native bootstrap
+        shell: pwsh
+        run: ./scripts/build-native.ps1
+      - name: Test
+        shell: pwsh
+        run: dotnet test AutoGame.slnx -c Release
+      - name: Assemble release candidate
+        shell: pwsh
+        run: |
+          $release = '.artifacts/release'
+          dotnet publish src/AutoGame.Cli/AutoGame.Cli.csproj -c Release -o $release
+          if ($LASTEXITCODE) { throw 'Publish failed.' }
+          if (@(Get-ChildItem $release -Recurse -File).Count -ne 1) { throw 'Publish must produce a single executable.' }
+          Copy-Item scripts/install.ps1 "$release/install.ps1"
+          $version = (& "$release/auto-game.exe" version | ConvertFrom-Json).result
+          if ($LASTEXITCODE) { throw 'Executable version check failed.' }
+          @{
+            version  = $version
+            rid      = 'win-x64'
+            fileName = 'auto-game.exe'
+            sha256   = (Get-FileHash "$release/auto-game.exe" -Algorithm SHA256).Hash.ToLowerInvariant()
+          } | ConvertTo-Json | Set-Content "$release/artifact.json" -Encoding utf8
+      - uses: actions/upload-artifact@v4
+        with:
+          name: auto-game-release-candidate
+          path: .artifacts/release/
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+    runs-on: windows-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: auto-game-release-candidate
+          path: release
+      - name: Verify release candidate
+        shell: pwsh
+        run: |
+          $artifact = Get-Content release/artifact.json -Raw | ConvertFrom-Json
+          if ('v' + $artifact.version -cne '${{ github.ref_name }}') { throw 'Release tag must match the version the executable reports.' }
+          if ((Get-FileHash release/auto-game.exe -Algorithm SHA256).Hash -ine $artifact.sha256) { throw 'Release artifact hash mismatch.' }
+      - uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            release/auto-game.exe
+            release/artifact.json
+            release/install.ps1

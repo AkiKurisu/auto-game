@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AutoGame.Attach/AutoGame.Attach.csproj" />
+    <Project Path="src/AutoGame.Cli/AutoGame.Cli.csproj" />
+    <Project Path="src/AutoGame.Decompiler/AutoGame.Decompiler.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AutoGame.Tests/AutoGame.Tests.csproj" />
+  </Folder>
+</Solution>

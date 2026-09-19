@@ -1,0 +1,9 @@
+**/bin/
+**/obj/
+.artifacts/
+artifacts/
+.auto-game/
+*.user
+*.suo
+
+src/AutoGame.Attach/Native/AutoGame.Native.dll

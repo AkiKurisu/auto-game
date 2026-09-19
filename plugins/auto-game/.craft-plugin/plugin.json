@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "auto-game",
+  "version": "0.1.0",
+  "displayName": "Auto Game",
+  "description": "Guide agents to inspect and automate running games through the Auto Game CLI.",
+  "capabilities": [
+    "skill"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Auto Game",
+    "shortDescription": "Automate running games",
+    "longDescription": "Inspect, reflect over, decompile, and automate a running game through a local CLI.",
+    "developerName": "AkiKurisu",
+    "category": "Productivity",
+    "capabilities": [
+      "Skill",
+      "Game",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": "Inspect the selected game process.",
+    "composerIcon": "./assets/auto-game.svg",
+    "logo": "./assets/auto-game.svg",
+    "websiteUrl": "https://github.com/AkiKurisu/auto-game"
+  }
+}

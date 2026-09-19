@@ -1,0 +1,39 @@
+{
+  "name": "auto-game",
+  "version": "0.1.0",
+  "description": "Guide agents to inspect and automate running games through the Auto Game CLI.",
+  "author": {
+    "name": "AkiKurisu",
+    "url": "https://github.com/AkiKurisu"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "game",
+    "automation",
+    "unity",
+    "mono",
+    "decompiler"
+  ],
+  "homepage": "https://github.com/AkiKurisu/auto-game",
+  "repository": "https://github.com/AkiKurisu/auto-game",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Auto Game",
+    "shortDescription": "Automate running games",
+    "longDescription": "Inspect, reflect over, decompile, and automate a running game through a local CLI.",
+    "developerName": "AkiKurisu",
+    "category": "Productivity",
+    "capabilities": [
+      "Skill",
+      "Game",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Inspect the selected game process."
+    ],
+    "composerIcon": "./assets/auto-game.svg",
+    "logo": "./assets/auto-game.svg",
+    "websiteURL": "https://github.com/AkiKurisu/auto-game"
+  }
+}
